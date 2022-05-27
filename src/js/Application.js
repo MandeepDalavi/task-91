@@ -24,21 +24,29 @@ export default class Application extends EventEmitter {
     //   });
     // });
 
-    this._beat.on(Beat.events.BIT, () => {
-      this._create(lyrics[count]);
-      count++;
-      if (count === lyrics.length) {
-        count = 0;
-      }
-    });
-
-    // addEventListener(this._beat, () => {
+    // this._beat.on(Beat.events.BIT, () => {
     //   this._create(lyrics[count]);
     //   count++;
     //   if (count === lyrics.length) {
     //     count = 0;
     //   }
     // });
+
+    // this._beat.ontimeout = () => {
+    //   this._create(lyrics[count]);
+    //   count++;
+    //   if (count === lyrics.length) {
+    //     count = 0;
+    //   }
+    // };
+
+    this._beat.addEventListener(Beat.events.BIT, () => {
+      this._create(lyrics[count]);
+      count++;
+      if (count === lyrics.length) {
+        count = 0;
+      }
+    });
 
     this.emit(Application.events.READY);
   }
